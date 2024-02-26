@@ -51,6 +51,8 @@ const Comment = ({ postSlug }: { postSlug: any }) => {
     console.log(data);
   }
 
+  const base = process.env.NEXTAUTH_URL
+
   const { data, isLoading } = useSWR(
     `http://localhost:3000/api/comments?postSlug=${postSlug}`,
     fetcher
@@ -97,7 +99,7 @@ const Comment = ({ postSlug }: { postSlug: any }) => {
           {isLoading
             ? "Loading comments..."
             : data?.map((comment: any) => (
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3" key={comment.id}>
                   <div className="flex items-center gap-2">
                     <Image
                       src={comment?.user?.image}

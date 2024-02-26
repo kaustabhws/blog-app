@@ -10,7 +10,8 @@ interface PostParams {
 }
 
 const getData = async (slug: string) => {
-  const res = await axios.get(`http://localhost:3000/api/posts/${slug}`);
+  const base = process.env.NEXTAUTH_URL;
+  const res = await axios.get(`${base}/api/posts/${slug}`);
 
   if (res.statusText != "OK") {
     console.log("Error fetching data");
@@ -21,11 +22,9 @@ const getData = async (slug: string) => {
 
 const PostPage = async ({ params }: { params: PostParams }) => {
   const data = await getData(params.slug);
-  if(!data) {
-    return (
-      <ErrorPage />
-    )
-  } 
+  if (!data) {
+    return <ErrorPage />;
+  }
 
   return (
     <div className="my-6 md:w-9/12 mx-auto w-11/12 flex flex-col">

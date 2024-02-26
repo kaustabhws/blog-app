@@ -10,8 +10,9 @@ interface SearchParams {
 }
 
 const getData = async (page: number, category: string) => {
+  const base = process.env.NEXTAUTH_URL
   const res = await axios.get(
-    `http://localhost:3000/api/posts?page=${page}&category=${category}`
+    `${base}/api/posts?page=${page}&category=${category}`
   );
 
   if (!res.data.success) {
@@ -40,7 +41,7 @@ const BlogPage = async ({ searchParams }: { searchParams: SearchParams }) => {
         </h1>
       </div>
       {data.data.map((item: any) => (
-        <BlogCard item={item} className="max-[500px]:flex-col" />
+        <BlogCard item={item} key={item._id} className="max-[500px]:flex-col" />
       ))}
       <PaginationBlog page={page} hasNext={hasNext} hasPrev={hasPrev} cat={category} />
     </div>

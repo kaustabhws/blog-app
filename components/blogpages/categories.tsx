@@ -3,7 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const getData = async () => {
-  const res = await axios.get("http://localhost:3000/api/categories");
+
+  const base = process.env.NEXTAUTH_URL
+  const res = await axios.get(`${base}/api/categories`);
 
   if (!res.data.success) {
     console.log("Error fetching data");

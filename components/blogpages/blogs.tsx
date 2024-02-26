@@ -4,7 +4,8 @@ import PaginationBlog from "../pagination-blog";
 import PopularPage from "./popular";
 
 const getData = async (page: number) => {
-  const res = await axios.get(`http://localhost:3000/api/posts?page=${page}`);
+  const base = process.env.NEXTAUTH_URL
+  const res = await axios.get(`${base}/api/posts?page=${page}`);
 
   if (!res.data.success) {
     console.log("Error fetching data");
