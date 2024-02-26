@@ -2,8 +2,8 @@ import PopularPage from "@/components/blogpages/popular";
 import Comment from "@/components/comment";
 import axios from "axios";
 import Image from "next/image";
-import UserProfile from "./_components/profile";
-import ErrorPage from "./_components/error";
+import UserProfile from "../../../../components/_components/profile";
+import ErrorPage from "../../../../components/_components/error";
 
 interface PostParams {
   slug: string;

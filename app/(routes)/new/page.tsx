@@ -4,23 +4,29 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Image, Plus, Video } from "lucide-react";
 import { useSession } from "next-auth/react";
+import dynamic from "next/dynamic";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
 
 const NewPost = () => {
-
   const { status } = useSession();
 
+  const ReactQuill = dynamic(() => import("react-quill"), {ssr: false})
+
   useEffect(() => {
-    if(status === 'unauthenticated') {
-      redirect('/auth')
+    if (status === "unauthenticated") {
+      redirect("/auth");
     }
-  }, [status])
+  }, [status]);
 
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
+
+  if (status === "unauthenticated") {
+    return null;
+  }
+
   return (
     <div className="my-6 md:w-9/12 mx-auto w-11/12">
       <div className="flex flex-col gap-5">
