@@ -24,7 +24,7 @@ const BlogsPage = async ({ page }: { page: number }) => {
 
   return (
     <div className="md:w-9/12 mx-auto my-16 w-11/12">
-      <div className="flex gap-2 max-[740px]:flex-col">
+      <div className="flex gap-3 max-[740px]:flex-col">
         <div className="flex-[2.5]">
           <h1 className="text-2xl font-semibold">Recent Posts</h1>
           <div className="flex flex-col">

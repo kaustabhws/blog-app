@@ -13,7 +13,7 @@ const formatDate = (dateString: Date) => {
 
 interface BlogCardProps {
   item: any;
-  className?: React.HTMLAttributes<HTMLElement>;
+  className?: string;
 }
 
 const BlogCard: React.FC<BlogCardProps> = async ({ item, className }) => {
