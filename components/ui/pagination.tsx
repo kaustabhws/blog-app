@@ -46,7 +46,7 @@ const PaginationLink = ({
   size = "icon",
   ...props
 }: PaginationLinkProps) => (
-  <Link
+  <a
     aria-current={isActive ? "page" : undefined}
     className={cn(
       buttonVariants({
@@ -56,9 +56,8 @@ const PaginationLink = ({
       className
     )}
     {...props}
-  >
-
-  </Link>
+    href={props.href || ''}
+  />
 )
 PaginationLink.displayName = "PaginationLink"
 
