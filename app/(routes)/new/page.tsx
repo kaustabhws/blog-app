@@ -7,12 +7,11 @@ import { useSession } from "next-auth/react";
 import dynamic from "next/dynamic";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
+const ReactQuill = dynamic(() => import("react-quill"), {ssr: false})
 import "react-quill/dist/quill.bubble.css";
 
 const NewPost = () => {
   const { status } = useSession();
-
-  const ReactQuill = dynamic(() => import("react-quill"), {ssr: false})
 
   useEffect(() => {
     if (status === "unauthenticated") {
