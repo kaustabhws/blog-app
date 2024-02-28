@@ -40,7 +40,7 @@ const BlogPage = async ({ searchParams }: { searchParams: SearchParams }) => {
           <span className="capitalize">{category}</span> Blogs
         </h1>
       </div>
-      {data.data.map((item: any) => (
+      {data.data?.map((item: any) => (
         <BlogCard item={item} key={item._id} className="max-[500px]:flex-col" />
       ))}
       <PaginationBlog page={page} hasNext={hasNext} hasPrev={hasPrev} cat={category} />

@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
 import AuthProvider from "@/providers/authProvider";
+import { Toaster } from 'react-hot-toast'
 
 const poppins = Poppins({ subsets: ["latin"], weight: ['400', '600', '700'] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Navbar />
+            <Toaster />
             {children}
           </ThemeProvider>
         </AuthProvider>

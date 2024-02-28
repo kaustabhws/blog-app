@@ -17,9 +17,10 @@ import Image from "next/image";
 import useSWR from "swr";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import toast from "react-hot-toast";
 
 const FormSchema = z.object({
-  comment: z.string().min(5),
+  description: z.string().min(5),
 });
 
 const fetcher = async (url: any) => {
@@ -47,16 +48,21 @@ const Comment = ({ postSlug }: { postSlug: any }) => {
     resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
-  }
-
-  const base = process.env.NEXTAUTH_URL
-
-  const { data, isLoading } = useSWR(
-    `http://localhost:3000/api/comments?postSlug=${postSlug}`,
+  const { data, mutate, isLoading } = useSWR(
+    `/api/comments?postSlug=${postSlug}`,
     fetcher
   );
+
+  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    const res = await axios.post('/api/comments', {data, postSlug})
+    if (res.statusText != "OK") {
+      toast.error("Something went wrong")
+      console.log("Error fetching data");
+    }
+
+    toast.success("Comment added successfully!")
+    mutate()
+  }
 
   return (
     <div className="flex flex-col gap-2">
@@ -71,7 +77,7 @@ const Comment = ({ postSlug }: { postSlug: any }) => {
           >
             <FormField
               control={form.control}
-              name="comment"
+              name="description"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>

@@ -18,27 +18,35 @@ interface BlogCardProps {
 
 const BlogCard: React.FC<BlogCardProps> = async ({ item, className }) => {
   return (
-    <div className={cn("flex mt-5 items-center gap-6", className)} key={item.id}>
-      <div className="flex-1 max-[740px]:w-full">
-        <Image
-          src={item.image}
-          width={300}
-          height={300}
-          alt={item.slug}
-          className="w-full h-full object-cover rounded-sm"
-          priority
-          unoptimized
-        />
-      </div>
+    <div
+      className={cn("flex mt-5 items-center gap-6", className)}
+      key={item?.id}
+    >
+      {item?.image && (
+        <div className="flex-1 max-[740px]:w-full">
+          <Image
+            src={item.image}
+            width={300}
+            height={300}
+            alt={item?.slug}
+            className="w-full h-full object-cover rounded-sm"
+            priority
+            unoptimized
+          />
+        </div>
+      )}
       <div className="flex-1 max-[740px]:w-full">
         <div className="flex flex-col gap-3">
           <p className="text-xs dark:text-gray-400">
-            {formatDate(item.createdAt)} -{" "}
-            <span className="uppercase text-red-400">{item.catSlug}</span>
+            {formatDate(item?.createdAt)} -{" "}
+            <span className="uppercase text-red-400">{item?.catSlug}</span>
           </p>
           <h1 className="text-xl font-semibold">{item.title}</h1>
-          <p className="dark:text-gray-300">{item.description.slice(0,150)}...</p>
-          <Link href={`/posts/${item.slug}`}>
+          <p
+            className="dark:text-gray-300 line-clamp-3"
+            dangerouslySetInnerHTML={{ __html: item?.description }}
+          />
+          <Link href={`/posts/${item?.slug}`}>
             <Button variant="link" className="w-max p-0">
               Read More
             </Button>

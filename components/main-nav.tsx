@@ -43,7 +43,7 @@ export function MainNav({
         className
       )}
     >
-      {routes.map((route) => (
+      {routes?.map((route) => (
         <Link
           key={route.href}
           href={route.href}

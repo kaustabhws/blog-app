@@ -28,13 +28,13 @@ const CategoryPage = async () => {
                 className="border w-max px-6 py-2 rounded-lg cursor-pointer flex items-center gap-2 hover:bg-accent hover:text-accent-foreground"
               >
                 <Image
-                  src={item.image}
+                  src={item?.image}
                   width={40}
                   height={40}
                   alt="Travel"
                   className="h-10 w-10 object-cover"
                 />
-                <p>{item.title}</p>
+                <p>{item?.title}</p>
               </div>
               </Link>
             ))}

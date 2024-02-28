@@ -38,15 +38,17 @@ const PostPage = async ({ params }: { params: PostParams }) => {
           />
         </div>
         <div className="flex-1 flex justify-center">
-          <Image
-            src={data?.image}
-            alt="image"
-            height={500}
-            width={500}
-            className="w-full h-96 object-cover rounded-lg"
-            priority
-            unoptimized
-          />
+          {data?.image && (
+            <Image
+              src={data?.image}
+              alt="image"
+              height={500}
+              width={500}
+              className="w-full h-96 object-cover rounded-lg"
+              priority
+              unoptimized
+            />
+          )}
         </div>
       </div>
       <div className="ml-auto mt-7">
