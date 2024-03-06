@@ -28,7 +28,7 @@ const PopularPage = async () => {
       <h1 className="text-2xl font-semibold">Most Popular</h1>
       <div className="mt-5 flex flex-col gap-6">
         {data?.data?.slice(0, 5).reverse().map((item: any, index: number) => (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2" key={index}>
             <div className="text-sm bg-red-400 w-max px-2 rounded-2xl capitalize">
               {item?.catSlug}
             </div>
