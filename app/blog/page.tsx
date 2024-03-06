@@ -1,5 +1,3 @@
-
-
 import BlogCard from "@/components/blogpages/blog-card";
 import PaginationBlog from "@/components/pagination-blog";
 import axios from "axios";
@@ -10,7 +8,7 @@ interface SearchParams {
 }
 
 const getData = async (page: number, category: string) => {
-  const base = process.env.NEXTAUTH_URL
+  const base = process.env.NEXTAUTH_URL;
   const res = await axios.get(
     `${base}/api/posts?page=${page}&category=${category}`
   );
@@ -40,10 +38,20 @@ const BlogPage = async ({ searchParams }: { searchParams: SearchParams }) => {
           <span className="capitalize">{category}</span> Blogs
         </h1>
       </div>
+      {data.data.length === 0 && (
+        <div>
+          <p className='text-center text-xl'>No Blogs Found</p>
+        </div>
+      )}
       {data.data?.map((item: any) => (
         <BlogCard item={item} key={item._id} className="max-[500px]:flex-col" />
       ))}
-      <PaginationBlog page={page} hasNext={hasNext} hasPrev={hasPrev} cat={category} />
+      <PaginationBlog
+        page={page}
+        hasNext={hasNext}
+        hasPrev={hasPrev}
+        cat={category}
+      />
     </div>
   );
 };

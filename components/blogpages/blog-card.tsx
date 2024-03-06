@@ -16,6 +16,10 @@ interface BlogCardProps {
   className?: string;
 }
 
+const stripHtmlTags = (html: string) => {
+  return html.replace(/<[^>]*>?/gm, '');
+};
+
 const BlogCard: React.FC<BlogCardProps> = async ({ item, className }) => {
   return (
     <div
@@ -42,10 +46,9 @@ const BlogCard: React.FC<BlogCardProps> = async ({ item, className }) => {
             <span className="uppercase text-red-400">{item?.catSlug}</span>
           </p>
           <h1 className="text-xl font-semibold">{item.title}</h1>
-          <p
-            className="dark:text-gray-300 line-clamp-3"
-            dangerouslySetInnerHTML={{ __html: item?.description }}
-          />
+          <p className='dark:text-gray-300'>
+            {stripHtmlTags(item?.description.slice(0, 100))}...
+          </p>
           <Link href={`/posts/${item?.slug}`}>
             <Button variant="link" className="w-max p-0">
               Read More

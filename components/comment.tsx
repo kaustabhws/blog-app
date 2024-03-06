@@ -54,15 +54,15 @@ const Comment = ({ postSlug }: { postSlug: any }) => {
   );
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-    const res = await axios.post('/api/comments', {data, postSlug})
-    if (res.statusText != "OK") {
-      toast.error("Something went wrong")
+    const res = await axios.post("/api/comments", { data, postSlug });
+    if (res.status != 200) {
+      toast.error("Something went wrong");
       console.log("Error fetching data");
+    } else {
+      toast.success("Comment added successfully!");
+      mutate();
     }
-
-    toast.success("Comment added successfully!")
-    mutate()
-  }
+  };
 
   return (
     <div className="flex flex-col gap-2">
@@ -97,7 +97,7 @@ const Comment = ({ postSlug }: { postSlug: any }) => {
           </form>
         </Form>
       ) : (
-        <p className='text-gray-400'>Login to write a comment</p>
+        <p className="text-gray-400">Login to write a comment</p>
       )}
       <div className="mt-6">
         <h1 className="text-lg font-semibold">Comments</h1>

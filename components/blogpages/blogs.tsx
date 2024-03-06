@@ -4,7 +4,7 @@ import PaginationBlog from "../pagination-blog";
 import PopularPage from "./popular";
 
 const getData = async (page: number) => {
-  const base = process.env.NEXTAUTH_URL
+  const base = process.env.NEXTAUTH_URL;
   const res = await axios.get(`${base}/api/posts?page=${page}`);
 
   if (!res.data.success) {
@@ -28,14 +28,19 @@ const BlogsPage = async ({ page }: { page: number }) => {
         <div className="flex-[2.5]">
           <h1 className="text-2xl font-semibold">Recent Posts</h1>
           <div className="flex flex-col">
-          {data.data.map((item: any, index: number) => (
-              <BlogCard key={index} item={item} className="max-[1080px]:flex-col max-[1080px]:items-start max-[740px]:items-center" />
-          ))}
+            {data.data.length === 0 && <p className='text-center text-xl'>No posts found</p>}
+            {data.data.map((item: any, index: number) => (
+              <BlogCard
+                key={index}
+                item={item}
+                className="max-[1080px]:flex-col max-[1080px]:items-start max-[740px]:items-center"
+              />
+            ))}
           </div>
           <PaginationBlog page={page} hasPrev={hasPrev} hasNext={hasNext} />
         </div>
         <div className="flex-1">
-            <PopularPage />
+          <PopularPage />
         </div>
       </div>
     </div>

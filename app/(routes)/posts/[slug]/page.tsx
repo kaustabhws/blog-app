@@ -4,6 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import UserProfile from "../../../../components/_components/profile";
 import ErrorPage from "../../../../components/_components/error";
+import prisma from "@/utils/connect";
 
 interface PostParams {
   slug: string;
@@ -60,7 +61,10 @@ const PostPage = async ({ params }: { params: PostParams }) => {
       </div>
       <div className="mt-6 flex gap-3 max-[740px]:flex-col">
         <div className="flex-[2.5]">
-          <div dangerouslySetInnerHTML={{ __html: data?.description }} />
+          <div
+            dangerouslySetInnerHTML={{ __html: data?.description }}
+            className="description"
+          />
           <div className="mt-10">
             <Comment postSlug={params.slug} />
           </div>
