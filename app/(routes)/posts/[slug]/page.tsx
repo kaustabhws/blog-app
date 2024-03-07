@@ -59,7 +59,7 @@ const PostPage = async ({ params }: { params: PostParams }) => {
           className="min-[712px]:hidden"
         />
       </div>
-      <div className="mt-6 flex gap-3 max-[740px]:flex-col">
+      <div className="mt-6 flex gap-3 max-[1034px]:flex-col">
         <div className="flex-[2.5]">
           <div
             dangerouslySetInnerHTML={{ __html: data?.description }}

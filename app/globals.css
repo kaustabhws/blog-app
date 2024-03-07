@@ -305,4 +305,5 @@ svg:hover #easter-egg {
 .dark .description a {
   color: #a1a1aa !important;
   text-decoration: underline !important;
+  word-break: break-all;
 }
