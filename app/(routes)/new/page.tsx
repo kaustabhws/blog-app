@@ -132,7 +132,7 @@ const NewPost = () => {
       toast.error("Please upload an image")
       return;
     }
-    const res = await axios.post("http://localhost:3000/api/posts", {
+    const res = await axios.post("/api/posts", {
       title,
       description,
       media,
